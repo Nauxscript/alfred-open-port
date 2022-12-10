@@ -1,7 +1,7 @@
 {
-  "name": "your-workflow-name",
-  "version": "0.0.1",
-  "description": "",
+  "name": "alfred-open-port",
+  "version": "0.0.0",
+  "description": "a Workflow to open local listened port easily",
   "scripts": {
     "lint:fix": "eslint . --fix",
     "test": "vitest",
