@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>nauxscript.workflow.ts-template</string>
+	<string>nauxscript.workflow.alfred-open-port</string>
 	<key>connections</key>
 	<dict>
-		<key>45A75F3D-D49D-40C0-880D-37DAEA5D395E</key>
+		<key>0EC46467-B2D7-4B7D-975D-E6086FD950C0</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>1A37DB33-A445-4DAA-87A2-3EFA8FF35275</string>
+				<string>0EA6FA32-0F9C-4D45-8665-0A7230D11163</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -19,11 +19,47 @@
 				<false/>
 			</dict>
 		</array>
-		<key>D5253346-B7B8-4FBB-9EA1-031E4CF69F22</key>
+		<key>1F6017E0-434C-44A8-B871-4269E258FCAE</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>45A75F3D-D49D-40C0-880D-37DAEA5D395E</string>
+				<string>0EC46467-B2D7-4B7D-975D-E6086FD950C0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>4D59CF3D-7FD5-417D-B25C-C5FEC1306A00</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>3CAD799C-0423-4214-B0BC-2BFE6B9B7E98</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0EA6FA32-0F9C-4D45-8665-0A7230D11163</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>4D59CF3D-7FD5-417D-B25C-C5FEC1306A00</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3CAD799C-0423-4214-B0BC-2BFE6B9B7E98</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -34,82 +70,33 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>nauxscript</string>
+	<string>Nauxscript</string>
 	<key>description</key>
-	<string>a template for building a alfred workflow in TypeScript.</string>
+	<string>a Workflow to open local listened port easily</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>alfred-workflow-ts-template</string>
+	<string>Open Local Port</string>
 	<key>objects</key>
 	<array>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<true/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>ts-template</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
+				<key>browser</key>
 				<string></string>
-				<key>script</key>
-				<string>osascript -l JavaScript index.js "$1" 2&gt;&amp;1</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
+				<key>spaces</key>
 				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string>input someting...</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
+				<key>url</key>
+				<string>http://{query}</string>
+				<key>utf8</key>
 				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>D5253346-B7B8-4FBB-9EA1-031E4CF69F22</string>
+			<string>0EC46467-B2D7-4B7D-975D-E6086FD950C0</string>
 			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<true/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>45A75F3D-D49D-40C0-880D-37DAEA5D395E</string>
-			<key>version</key>
-			<integer>3</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -132,38 +119,145 @@
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>1A37DB33-A445-4DAA-87A2-3EFA8FF35275</string>
+			<string>0EA6FA32-0F9C-4D45-8665-0A7230D11163</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>lh</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>osascript -l JavaScript index.js "$1" 2&gt;&amp;1</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>输入端口号...</string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>1F6017E0-434C-44A8-B871-4269E258FCAE</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>http://{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>4D59CF3D-7FD5-417D-B25C-C5FEC1306A00</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>Already copied!</string>
+				<key>title</key>
+				<string>http://{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>3CAD799C-0423-4214-B0BC-2BFE6B9B7E98</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string><![CDATA[
+  {{readme}}
+  ]]></string>
 	<key>uidata</key>
 	<dict>
-		<key>1A37DB33-A445-4DAA-87A2-3EFA8FF35275</key>
+		<key>0EA6FA32-0F9C-4D45-8665-0A7230D11163</key>
 		<dict>
 			<key>xpos</key>
-			<integer>630</integer>
+			<integer>1130</integer>
 			<key>ypos</key>
-			<integer>210</integer>
+			<integer>285</integer>
 		</dict>
-		<key>45A75F3D-D49D-40C0-880D-37DAEA5D395E</key>
+		<key>0EC46467-B2D7-4B7D-975D-E6086FD950C0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>395</integer>
+			<integer>685</integer>
 			<key>ypos</key>
-			<integer>175</integer>
+			<integer>130</integer>
 		</dict>
-		<key>D5253346-B7B8-4FBB-9EA1-031E4CF69F22</key>
+		<key>1F6017E0-434C-44A8-B871-4269E258FCAE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>155</integer>
+			<integer>410</integer>
 			<key>ypos</key>
-			<integer>110</integer>
+			<integer>305</integer>
+		</dict>
+		<key>3CAD799C-0423-4214-B0BC-2BFE6B9B7E98</key>
+		<dict>
+			<key>xpos</key>
+			<integer>885</integer>
+			<key>ypos</key>
+			<integer>475</integer>
+		</dict>
+		<key>4D59CF3D-7FD5-417D-B25C-C5FEC1306A00</key>
+		<dict>
+			<key>xpos</key>
+			<integer>650</integer>
+			<key>ypos</key>
+			<integer>475</integer>
 		</dict>
 	</dict>
+	<key>version</key>
+	<string>{{version}}</string>
 	<key>webaddress</key>
-	<string>https://github.com/Nauxscript/alfred-workflow-ts-template</string>
+	<string>https://github.com/Nauxscript/alfred-open-port</string>
 </dict>
 </plist>

@@ -15,7 +15,6 @@ cd dist
 echo "setup files ..."
 cp ${parentDir}/src/info.plist ./ 
 cp ${parentDir}/src/icon.png ./ 
-cp ${parentDir}/README.md ./ 
 cp ${parentDir}/LICENSE ./ 
 
 rm ./index.mjs
