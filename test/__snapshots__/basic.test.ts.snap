@@ -1,0 +1,11 @@
+// Vitest Snapshot v1
+
+exports[`index entry > query string is empty 1`] = `
+{
+  "items": [
+    {
+      "title": "This is a selection example, and you are inputing ",
+    },
+  ],
+}
+`;

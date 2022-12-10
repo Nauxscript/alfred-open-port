@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - 'test*'
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Build
+        run: |
+          npm install
+          npm run build
+      - name: Setup release files
+        run: ./build.sh
+
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: ./dist/your-workflow-name.alfredworkflow
+          token: ${{ secrets.G_TOKEN }}
+
+      - run: npx changelogithub # or changelogithub@0.12 if ensure the stable result
+        env:
+          GITHUB_TOKEN: ${{secrets.G_TOKEN}}
