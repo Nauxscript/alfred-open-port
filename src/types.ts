@@ -23,13 +23,13 @@ export interface Selection {
 
 }
 
-export type Mod = Record<ModComb, ModItem>
+export type Mod = Partial<Record<ModComb, ModItem>>
 
 export type ModNames = 'cmd' | 'alt' | 'ctrl' | 'shift' | 'fn'
 
 export type t = {
   [k in ModNames]: {
-    [v in ModNames]: k extends v ? v extends k ? never : `${k} + ${v}` : `${k} + ${v}`
+    [v in ModNames]: k extends v ? v extends k ? v : `${k} + ${v}` : `${k} + ${v}`
   }
 }
 
@@ -37,7 +37,7 @@ export type t = {
 export type ModComb = `${t[ModNames][ModNames]}`
 
 export interface ModItem {
-  valid: string
+  valid?: string
   arg: string
   subtitle: string
 }

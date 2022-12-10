@@ -1,13 +1,17 @@
+import { parsePort } from './core'
 import type { Selection } from './types'
 
-export default function run(argv: Array<string | boolean >) {
+export default function run(argv: [string, boolean]) {
   const query = argv[0]
+  const items = []
+  items.push(parsePort('8080'))
+  const currPort = parsePort(query)
+  query && items.push(currPort)
+
   const result: {
     items: Selection[]
   } = {
-    items: [{
-      title: `This is a selection example, and you are inputing ${query}`,
-    }],
+    items,
   }
 
   // for testing
