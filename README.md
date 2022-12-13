@@ -1,23 +1,22 @@
-# alfred-workflow-ts-template
-a Template for building a alfred workflow in TypeScript.
+# Alfred-Open-Port
 
-## Features
+<p align="center"><img width=12.5% src="https://github.com/Nauxscript/alfred-open-port/blob/main/src/icon.png"></p>
 
-- 🦾 TypeScript, of course
-- ⚙️ Unit Testing with [Vitest](https://github.com/vitest-dev/vitest)
-- [Unbuild](https://github.com/unjs/unbuild), a unified javascript build system 
-- JXA Types, supported by [@jxa/global-type](https://github.com/JXA-userland/JXA/tree/master/packages/@jxa/global-type)
-- Eslint
-- pnpm
+<h3 align="center">Alfred-Open-Port</h3>
+
+<p align="center"><img src="https://github.com/Nauxscript/alfred-open-port/blob/main/assets/preview.gif"></p>
+
+a Workflow to open local listened port easily. 
+
+快速打开本地端口工作流。
 
 ## Usage
-
-- modify the `package.json`
-- modify the `artifacts` value in `.github/workflows/release.yml`
-- filled in the workflow info in `src/update.sh`
-- generate your `info.plist` & `icon.png`
-
-## Preview
+  - Press enter (↵)： open the port in `localhost` prefix.
+  - Press ctrl + enter (⌃ ↵)：open the port in intranet ip prefix.
+  - Press cmd + enter (⌘ ↵)：open the port in `127.0.0.1` prefix.
+  - 回车键（↵）：直接在 `localhost` 打开端口。
+  - ctrl 键 + 回车键（⌃ ↵）：在当前内网 ip 打开端口。
+  - cmd 键 + 回车键（⌘ ↵）：在 `127.0.0.1` 打开端口
 
 # License
 
