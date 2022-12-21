@@ -21,7 +21,7 @@ const getIntranetIP = () => (app.systemInfo() as any).ipv4Address
 
 export const parsePort = (port: string): Selection => {
   return {
-    title: `Port:${port}`,
+    title: `Port: ${port}`,
     subtitle: `http://localhost:${port}`,
     arg: `localhost:${port}`,
     mods: {
