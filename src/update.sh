@@ -2,10 +2,9 @@
 
 # THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
 # refer to https://github.com/vitorgalvao/alfred-workflows/tree/master/OneUpdater
-readonly remote_info_plist=''
-readonly workflow_url=''
-readonly download_type=''
-readonly frequency_check=''
+readonly workflow_url='Nauxscript/alfred-open-port'
+readonly download_type='github_release'
+readonly frequency_check='1'
 
 # FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
 function abort {
