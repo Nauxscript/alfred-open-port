@@ -1,4 +1,4 @@
-import { getenv, parseEnvPort, parsePort } from './core'
+import { deduplicate, getenv, parseEnvPort, parsePort } from './core'
 import type { Selection } from './types'
 
 export default function run(argv: [string, boolean]) {
@@ -9,7 +9,7 @@ export default function run(argv: [string, boolean]) {
   const envPortsStr = getenv('myPort') as string
   envPortsStr && items.push(...parseEnvPort(envPortsStr))
   items.push(parsePort('8080'))
-
+  deduplicate(items)
   const result: {
     items: Selection[]
   } = {

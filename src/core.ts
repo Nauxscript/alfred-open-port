@@ -41,3 +41,14 @@ export const parseEnvPort = (ports: string) => {
   const portArr = ports.split(',')
   return portArr.filter(item => item).map(item => parsePort(item))
 }
+
+export const deduplicate = (target: Selection[]) => {
+  const uniqueKeys = {} as Record<string, boolean>
+  target.reduce((curr, next) => {
+    if (uniqueKeys[next.title]) {
+      uniqueKeys[next.title] = true
+      curr.push(next)
+    }
+    return curr
+  }, [] as Selection[])
+}
