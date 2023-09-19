@@ -32,7 +32,6 @@ sed -i '' -e "/{{readme}}/{r ${readme}" -e 'd' -e '}' ./info.plist
 # insert the auto-update to .plist file, if you need, and you need to fill in the workflow info in that file
 echo "Injecting auto-update script ..."
 update="$(mktemp)"
-# s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g this pattern is use for repalcing '&' '<' '>'
 cat ${parentDir}/src/update.sh | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g' > ${update}
 sed -i '' -e "/{{update_script}}/{r ${update}" -e 'd' -e '}' ./info.plist
  
