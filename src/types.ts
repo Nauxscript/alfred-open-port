@@ -20,7 +20,7 @@ export interface Selection {
   }
   match?: string
   quicklookurl?: string
-
+  variables: Record<string, string>
 }
 
 export type Mod = Partial<Record<ModComb, ModItem>>

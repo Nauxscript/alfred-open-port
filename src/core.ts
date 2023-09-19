@@ -4,6 +4,9 @@ import type { Selection } from './types'
 const app = Application.currentApplication()
 app.includeStandardAdditions = true
 
+export const cachePortFilePath = `${app.doShellScript('pwd')}/ports`
+export const innerDefaultPort = '8080'
+
 export const getenv = (name: string) => {
   if (typeof $ === 'undefined')
     return process.env[name]
@@ -24,6 +27,9 @@ export const parsePort = (port: string): Selection => {
     title: `Port: ${port}`,
     subtitle: `http://localhost:${port}`,
     arg: `localhost:${port}`,
+    variables: {
+      currPort: port,
+    },
     mods: {
       cmd: {
         subtitle: `http://127.0.0.1:${port}`,
@@ -37,18 +43,30 @@ export const parsePort = (port: string): Selection => {
   }
 }
 
-export const parseEnvPort = (ports: string) => {
-  const portArr = ports.split(',')
-  return portArr.filter(item => item).map(item => parsePort(item))
+export const portsStr2Arr = (portsStr: string) => portsStr.split(',')
+
+export const parsePortsStr = (ports: string[]) => {
+  const uniquePorts = [...new Set(ports.filter(item => item.replace(/\D/g, '')))]
+  return uniquePorts.map(item => parsePort(item))
 }
 
-export const deduplicate = (target: Selection[]) => {
-  const uniqueKeys = {} as Record<string, boolean>
-  target.reduce((curr, next) => {
-    if (uniqueKeys[next.title]) {
-      uniqueKeys[next.title] = true
-      curr.push(next)
-    }
-    return curr
-  }, [] as Selection[])
+export const isFileExist = (path: string) => {
+  // Check if the file exists
+  const fileExists = app.doShellScript(`test -e "${path}" && echo "true" || echo "false"`)
+
+  return fileExists === 'true'
 }
+
+export const getContentFromFile = (path: string) => {
+  if (!isFileExist(path))
+    return ''
+  const fileContent = app.doShellScript(`cat "${path}"`) as string
+  return fileContent
+}
+
+export const getCachePorts = () => {
+  const portsStr = getContentFromFile(cachePortFilePath)
+  return portsStr.split(',')
+}
+
+export const matchPort = (ports: string[], query: string) => ports.filter(port => port.includes(query))

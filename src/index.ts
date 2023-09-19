@@ -1,19 +1,20 @@
-import { deduplicate, getenv, parseEnvPort, parsePort } from './core'
+import { cachePortFilePath, getContentFromFile, getenv, innerDefaultPort, matchPort, parsePortsStr, portsStr2Arr } from './core'
 import type { Selection } from './types'
 
 export default function run(argv: [string, boolean]) {
-  const query = argv[0]
-  const items = []
-  const currPort = parsePort(query)
-  query && items.push(currPort)
-  const envPortsStr = getenv('myPort') as string
-  envPortsStr && items.push(...parseEnvPort(envPortsStr))
-  items.push(parsePort('8080'))
-  deduplicate(items)
+  const currPort = argv[0]
+
+  const envPortsStr = getenv('myPorts') as string
+  const cachePortsStr = getContentFromFile(cachePortFilePath)
+  const allPortsStr = `${currPort},${envPortsStr},${cachePortsStr},${innerDefaultPort}`
+  const allPorts = portsStr2Arr(allPortsStr)
+  const matchPorts = matchPort(allPorts, currPort)
+  const ports = parsePortsStr(matchPorts)
+
   const result: {
     items: Selection[]
   } = {
-    items,
+    items: ports,
   }
 
   // for testing
