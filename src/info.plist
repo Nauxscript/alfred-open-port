@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>nauxscript.workflow.alfred-open-port</string>
+	<key>category</key>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>0EC46467-B2D7-4B7D-975D-E6086FD950C0</key>
@@ -21,6 +23,16 @@
 		</array>
 		<key>1F6017E0-434C-44A8-B871-4269E258FCAE</key>
 		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>205BBC80-E258-474A-AA68-9DDC4B2C8EA8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 			<dict>
 				<key>destinationuid</key>
 				<string>0EC46467-B2D7-4B7D-975D-E6086FD950C0</string>
@@ -59,11 +71,36 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>0EA6FA32-0F9C-4D45-8665-0A7230D11163</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>7B64AF79-0000-4978-B325-3163AE16459A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>7B64AF79-0000-4978-B325-3163AE16459A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
 				<string>3CAD799C-0423-4214-B0BC-2BFE6B9B7E98</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>sourceoutputuid</key>
+				<string>CDD92D35-2B6A-4F04-9B49-240868C3D37C</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -82,14 +119,58 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>FILE="ports"
+INPUT="${currPort}"  # take the input from command line argument
+DEAFAULT_VALUE="${myPorts}"
+
+
+# If the file does not exist, create it with initial value
+if [ ! -f "$FILE" ]; then
+    echo "$DEAFAULT_VALUE" &gt; $FILE
+fi
+
+if [ -z "$INPUT" ]; then
+    echo "Input is empty, no action performed."
+    exit 0
+fi
+
+# Check if the input already exists in the file
+if ! grep -q $INPUT $FILE; then
+    # If not, append the input to the file
+    echo -n ",$INPUT" &gt;&gt; $FILE
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>205BBC80-E258-474A-AA68-9DDC4B2C8EA8</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>browser</key>
 				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
 				<string>http://{query}</string>
-				<key>utf8</key>
-				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
@@ -106,9 +187,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>
-					{{update_script}}
-				</string>
+				<string>{{update_script}}</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -212,49 +291,95 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:notificationEnabled}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>true</string>
+						<key>outputlabel</key>
+						<string></string>
+						<key>uid</key>
+						<string>CDD92D35-2B6A-4F04-9B49-240868C3D37C</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>7B64AF79-0000-4978-B325-3163AE16459A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string><![CDATA[
-  {{readme}}
-  ]]></string>
+	<string>{{readme}}</string>
 	<key>uidata</key>
 	<dict>
 		<key>0EA6FA32-0F9C-4D45-8665-0A7230D11163</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1130</integer>
+			<real>1430</real>
 			<key>ypos</key>
-			<integer>285</integer>
+			<real>310</real>
 		</dict>
 		<key>0EC46467-B2D7-4B7D-975D-E6086FD950C0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>685</integer>
+			<real>695</real>
 			<key>ypos</key>
-			<integer>130</integer>
+			<real>245</real>
 		</dict>
 		<key>1F6017E0-434C-44A8-B871-4269E258FCAE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>410</integer>
+			<real>245</real>
 			<key>ypos</key>
-			<integer>305</integer>
+			<real>370</real>
+		</dict>
+		<key>205BBC80-E258-474A-AA68-9DDC4B2C8EA8</key>
+		<dict>
+			<key>xpos</key>
+			<real>695</real>
+			<key>ypos</key>
+			<real>115</real>
 		</dict>
 		<key>3CAD799C-0423-4214-B0BC-2BFE6B9B7E98</key>
 		<dict>
 			<key>xpos</key>
-			<integer>885</integer>
+			<real>1080</real>
 			<key>ypos</key>
-			<integer>475</integer>
+			<real>475</real>
 		</dict>
 		<key>4D59CF3D-7FD5-417D-B25C-C5FEC1306A00</key>
 		<dict>
 			<key>xpos</key>
-			<integer>650</integer>
+			<real>700</real>
 			<key>ypos</key>
-			<integer>475</integer>
+			<real>410</real>
+		</dict>
+		<key>7B64AF79-0000-4978-B325-3163AE16459A</key>
+		<dict>
+			<key>xpos</key>
+			<real>955</real>
+			<key>ypos</key>
+			<real>505</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>version</key>
 	<string>{{version}}</string>
 	<key>webaddress</key>
