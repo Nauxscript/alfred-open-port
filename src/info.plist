@@ -187,7 +187,9 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>{{update_script}}</string>
+				<string>
+				{{update_script}}
+				</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -325,7 +327,9 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>{{readme}}</string>
+	<string>
+	{{readme}}
+	</string>
 	<key>uidata</key>
 	<dict>
 		<key>0EA6FA32-0F9C-4D45-8665-0A7230D11163</key>
