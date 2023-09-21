@@ -1,6 +1,6 @@
 {
   "name": "alfred-open-port",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "a Workflow to open local listened port easily",
   "scripts": {
     "lint:fix": "eslint . --fix",
