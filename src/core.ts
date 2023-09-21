@@ -4,7 +4,7 @@ import type { Selection } from './types'
 const app = Application.currentApplication()
 app.includeStandardAdditions = true
 
-export const cachePortFilePath = `${app.doShellScript('pwd')}/ports`
+export const cacheFileName = 'ports'
 export const innerDefaultPort = '8080'
 
 export const getenv = (name: string) => {
@@ -32,12 +32,16 @@ export const parsePort = (port: string): Selection => {
     },
     mods: {
       cmd: {
-        subtitle: `http://127.0.0.1:${port}`,
+        subtitle: `open http://127.0.0.1:${port}`,
         arg: `127.0.0.1:${port}`,
       },
       ctrl: {
-        subtitle: `http://${getIntranetIP()}:${port}`,
+        subtitle: `open http://${getIntranetIP()}:${port}`,
         arg: `${getIntranetIP()}:${port}`,
+      },
+      alt: {
+        subtitle: `remove ${port}`,
+        arg: port,
       },
     },
   }
@@ -57,6 +61,11 @@ export const isFileExist = (path: string) => {
   return fileExists === 'true'
 }
 
+export const getCachePortsFilePath = () => {
+  const alfredWorkflowDataPath = getenv('alfred_workflow_data')
+  return `${alfredWorkflowDataPath}/${cacheFileName}`
+}
+
 export const getContentFromFile = (path: string) => {
   if (!isFileExist(path))
     return ''
@@ -65,6 +74,7 @@ export const getContentFromFile = (path: string) => {
 }
 
 export const getCachePorts = () => {
+  const cachePortFilePath = getCachePortsFilePath()
   const portsStr = getContentFromFile(cachePortFilePath)
   return portsStr.split(',')
 }

@@ -1,10 +1,11 @@
-import { cachePortFilePath, getContentFromFile, getenv, innerDefaultPort, matchPort, parsePortsStr, portsStr2Arr } from './core'
+import { getCachePortsFilePath, getContentFromFile, getenv, innerDefaultPort, matchPort, parsePortsStr, portsStr2Arr } from './core'
 import type { Selection } from './types'
 
 export default function run(argv: [string, boolean]) {
   const currPort = argv[0]
 
   const envPortsStr = getenv('myPorts') as string
+  const cachePortFilePath = getCachePortsFilePath()
   const cachePortsStr = getContentFromFile(cachePortFilePath)
   const allPortsStr = `${currPort},${envPortsStr},${cachePortsStr},${innerDefaultPort}`
   const allPorts = portsStr2Arr(allPortsStr)

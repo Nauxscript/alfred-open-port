@@ -53,6 +53,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>ECACC8FF-09ED-4D32-8C85-947E65E0ACCD</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>3CAD799C-0423-4214-B0BC-2BFE6B9B7E98</key>
 		<array>
@@ -124,15 +134,25 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>FILE="ports"
+				<string>ALFRED_WORKFLOW_DATA="${alfred_workflow_data}"
+FILE="${ALFRED_WORKFLOW_DATA}/ports"
 INPUT="${currPort}"  # take the input from command line argument
 DEAFAULT_VALUE="${myPorts}"
 
+if [ ! -d "${ALFRED_WORKFLOW_DATA}" ]; then
+  mkdir -p "${ALFRED_WORKFLOW_DATA}"
+fi
 
 # If the file does not exist, create it with initial value
 if [ ! -f "$FILE" ]; then
-    echo "$DEAFAULT_VALUE" &gt; $FILE
+	_DEAFAULT_VALUE=$(echo "$DEAFAULT_VALUE" | tr -dc '0-9,')
+    echo "$_DEAFAULT_VALUE" &gt; "$FILE"
 fi
+
+# If the file does not exist, create it with initial value
+# if [ ! -f "$FILE" ]; then
+#    echo "$DEAFAULT_VALUE" &gt; "$FILE"
+# fi
 
 if [ -z "$INPUT" ]; then
     echo "Input is empty, no action performed."
@@ -140,9 +160,9 @@ if [ -z "$INPUT" ]; then
 fi
 
 # Check if the input already exists in the file
-if ! grep -q $INPUT $FILE; then
+if ! grep -q "$INPUT" "$FILE"; then
     # If not, append the input to the file
-    echo -n ",$INPUT" &gt;&gt; $FILE
+    echo -n ",$INPUT" &gt;&gt; "$FILE"
 fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -325,6 +345,54 @@ fi</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>ALFRED_WORKFLOW_DATA="${alfred_workflow_data}"
+FILE="${ALFRED_WORKFLOW_DATA}/ports"
+INPUT=$1
+
+if [ ! -d "${ALFRED_WORKFLOW_DATA}" ]; then
+  	echo "no this workflow folder"
+  	exit 0
+fi
+
+# If the file does not exist, create it with initial value
+if [ ! -f "$FILE" ]; then
+    echo "no user ports data file"
+  	exit 0
+fi
+
+if [ -z "$INPUT" ]; then
+    echo "Input is empty, no action performed."
+    exit 0
+fi
+
+
+# remove the port
+sed -i '' "s/[[:&lt;:]]$INPUT[[:&gt;:]]//g" "$FILE"
+
+# remove consecutive or leading/trailing commas.
+sed -i '' -e $'s/,,*/,/g;s/^,//;s/,$//' "$FILE"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>ECACC8FF-09ED-4D32-8C85-947E65E0ACCD</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>
@@ -355,6 +423,8 @@ fi</string>
 		</dict>
 		<key>205BBC80-E258-474A-AA68-9DDC4B2C8EA8</key>
 		<dict>
+			<key>note</key>
+			<string>store port</string>
 			<key>xpos</key>
 			<real>695</real>
 			<key>ypos</key>
@@ -370,9 +440,9 @@ fi</string>
 		<key>4D59CF3D-7FD5-417D-B25C-C5FEC1306A00</key>
 		<dict>
 			<key>xpos</key>
-			<real>700</real>
+			<real>695</real>
 			<key>ypos</key>
-			<real>410</real>
+			<real>390</real>
 		</dict>
 		<key>7B64AF79-0000-4978-B325-3163AE16459A</key>
 		<dict>
@@ -380,6 +450,15 @@ fi</string>
 			<real>955</real>
 			<key>ypos</key>
 			<real>505</real>
+		</dict>
+		<key>ECACC8FF-09ED-4D32-8C85-947E65E0ACCD</key>
+		<dict>
+			<key>note</key>
+			<string>remove port from cache</string>
+			<key>xpos</key>
+			<real>695</real>
+			<key>ypos</key>
+			<real>540</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
